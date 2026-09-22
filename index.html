@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário de Classe - Sistema de Gestão Escolar</title>
+    <meta name="description" content="Software completo para gestão escolar. Controle de alunos, professores, turmas e notas em um único lugar. Comece seu teste gratuito hoje.">
+    <meta name="keywords" content="gestão escolar, diário de classe, sistema educacional, ERP educacional, Brasil">
+    <meta name="theme-color" content="#aa3bff">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #aa3bff;
+            --primary-dark: #c084fc;
+            --primary-light: #d8a5ff;
+            --text: #1a1a1a;
+            --text-light: #6b6375;
+            --bg-light: #f9f7fe;
+            --bg-white: #ffffff;
+            --accent: #7c3aed;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --gradient: linear-gradient(135deg, #aa3bff 0%, #7c3aed 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg-white);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(170, 59, 255, 0.3);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 0.7rem 1.5rem;
+        }
+
+        .cta-button-secondary:hover {
+            background: var(--bg-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero .cta-button {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .cta-button-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: white;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: var(--bg-light);
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .benefits-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(170, 59, 255, 0.15);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+
+        .feature-row:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .feature-row:nth-child(even) .feature-content {
+            order: 2;
+        }
+
+        .feature-row:nth-child(even) .feature-image {
+            order: 1;
+        }
+
+        .feature-image {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            height: 300px;
+        }
+
+        .feature-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .feature-content p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: var(--bg-light);
+            padding: 6rem 2rem;
+        }
+
+        .pricing-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .price-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            border: 2px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .price-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(170, 59, 255, 0.15);
+        }
+
+        .price-card.featured:before {
+            content: "MAIS POPULAR";
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .price-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 1.5rem 0;
+        }
+
+        .price-period {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .price-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .price-features li {
+            padding: 0.7rem 0;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .price-features li:before {
+            content: "✓ ";
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .price-card .cta-button {
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-section .cta-button {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: #a8a8b8;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-section a {
+            color: #a8a8b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            color: #808080;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .feature-row {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .feature-row:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-row:nth-child(even) .feature-content {
+                order: 1;
+            }
+
+            .feature-row:nth-child(even) .feature-image {
+                order: 2;
+            }
+
+            .price-card.featured {
+                transform: scale(1);
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">📚 Diário de Classe</div>
+            <ul class="nav-links">
+                <li><a href="#features">Funcionalidades</a></li>
+                <li><a href="#pricing">Planos</a></li>
+                <li><a href="#about">Sobre</a></li>
+            </ul>
+            <button class="cta-button">Começar Grátis</button>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Gestão Escolar Simplificada</h1>
+            <p>Controle completo de alunos, professores, turmas e notas. Tudo que sua escola precisa em uma plataforma única e intuitiva.</p>
+            <div class="hero-buttons">
+                <button class="cta-button">Teste Grátis por 30 dias</button>
+                <button class="cta-button-secondary">Ver Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+        <h2 class="section-title">Por que Diário de Classe?</h2>
+        <p class="section-subtitle">Mais de 500 escolas já confiam em nosso sistema para gerenciar suas operações acadêmicas</p>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Rápido e Eficiente</h3>
+                <p>Economize horas de trabalho administrativo. Automatize processos repetitivos e foque no que realmente importa.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🔒</div>
+                <h3>Segurança de Dados</h3>
+                <p>Todos os dados criptografados e hospedados em servidores seguros. Conformidade com LGPD e normas educacionais.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📱</div>
+                <h3>Acesso em Qualquer Lugar</h3>
+                <p>Interface responsiva que funciona em desktop, tablet e smartphone. Sempre conectado com sua escola.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">👥</div>
+                <h3>Fácil Colaboração</h3>
+                <p>Integre professores, coordenadores e administradores em um único sistema. Comunicação transparente e eficaz.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📊</div>
+                <h3>Relatórios Detalhados</h3>
+                <p>Gere relatórios em tempo real sobre desempenho, frequência e muito mais. Dados sempre atualizados para decisões melhores.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Preço Acessível</h3>
+                <p>Planos flexíveis que se adequam ao tamanho da sua instituição. Sem taxas escondidas ou compromissos longos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="section-title">Funcionalidades Principais</h2>
+            <p class="section-subtitle">Tudo que você precisa para gerenciar sua escola modernamente</p>
+
+            <div class="feature-row">
+                <div class="feature-image">📚</div>
+                <div class="feature-content">
+                    <h3>Gestão de Turmas</h3>
+                    <p>Crie e organize turmas, atribua professores e defina grades curriculares com facilidade. Organize seus alunos por modalidade, série e período.</p>
+                    <ul class="feature-list">
+                        <li>Alocação automática de professores</li>
+                        <li>Controle de vagas e transferências</li>
+                        <li>Disciplinas por turma</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-image">👨‍🎓</div>
+                <div class="feature-content">
+                    <h3>Cadastro de Alunos</h3>
+                    <p>Registre e mantenha informações completas de todos os seus alunos em um só lugar. Histórico acadêmico completo.</p>
+                    <ul class="feature-list">
+                        <li>Dados pessoais e de contato</li>
+                        <li>Histórico de alocações</li>
+                        <li>Registro de transferências</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-image">📝</div>
+                <div class="feature-content">
+                    <h3>Diário Eletrônico</h3>
+                    <p>Professores podem registrar notas, frequência e observações com segurança. Acesso remoto facilitado para lançamento de informações.</p>
+                    <ul class="feature-list">
+                        <li>Lançamento de notas por período</li>
+                        <li>Controle de frequência</li>
+                        <li>Observações e comentários</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-image">👨‍🏫</div>
+                <div class="feature-content">
+                    <h3>Gerenciamento de Professores</h3>
+                    <p>Administre corpo docente, atribuições, cargas horárias e disponibilidade. Controle completo de recursos humanos educacional.</p>
+                    <ul class="feature-list">
+                        <li>Perfil completo do professor</li>
+                        <li>Alocação por disciplina</li>
+                        <li>Histórico de atribuições</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <h2 class="section-title">Planos e Preços</h2>
+            <p class="section-subtitle">Escolha o plano ideal para sua instituição</p>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Básico</h3>
+                    <div class="price">R$ 299<span class="price-period">/mês</span></div>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">Até 200 alunos</p>
+                    <ul class="price-features">
+                        <li>Cadastro de alunos e professores</li>
+                        <li>Gerenciamento de turmas</li>
+                        <li>Diário eletrônico básico</li>
+                        <li>Relatórios simples</li>
+                        <li>Suporte por email</li>
+                    </ul>
+                    <button class="cta-button">Começar Agora</button>
+                </div>
+
+                <div class="price-card featured">
+                    <h3>Profissional</h3>
+                    <div class="price">R$ 599<span class="price-period">/mês</span></div>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">Até 800 alunos</p>
+                    <ul class="price-features">
+                        <li>Tudo do plano Básico</li>
+                        <li>Gerenciamento avançado</li>
+                        <li>Relatórios detalhados</li>
+                        <li>Integração com email</li>
+                        <li>Suporte prioritário</li>
+                        <li>Backup automático</li>
+                    </ul>
+                    <button class="cta-button">Começar Agora</button>
+                </div>
+
+                <div class="price-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Customizado</div>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">Acima de 800 alunos</p>
+                    <ul class="price-features">
+                        <li>Tudo do plano Profissional</li>
+                        <li>Suporte dedicado 24/7</li>
+                        <li>Customizações personalizadas</li>
+                        <li>Treinamento para equipe</li>
+                        <li>SLA garantido</li>
+                        <li>APIs customizadas</li>
+                    </ul>
+                    <button class="cta-button">Fale Conosco</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Pronto para Transformar sua Gestão Escolar?</h2>
+        <p>Comece seu teste gratuito de 30 dias. Não é necessário cartão de crédito.</p>
+        <button class="cta-button">Começar Teste Grátis</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Diário de Classe</h4>
+                <p>Transformando a gestão escolar no Brasil com tecnologia segura e acessível.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Produto</h4>
+                <ul>
+                    <li><a href="#features">Funcionalidades</a></li>
+                    <li><a href="#pricing">Preços</a></li>
+                    <li><a href="#">Segurança</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Carreiras</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">LGPD</li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Diário de Classe. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Botões CTA
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Aqui você pode adicionar integração com seu serviço de captura de leads
+                console.log('CTA clicado');
+                alert('Funcionalidade de registro em desenvolvimento. Redirecionando...');
+            });
+        });
+    </script>
+</body>
+</html>
