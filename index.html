@@ -43,6 +43,54 @@
         }
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "O que é um diário de classe online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "É um sistema digital que substitui o diário de classe em papel, permitindo que professores registrem notas, frequência e observações de forma segura, com acesso remoto de qualquer dispositivo."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Como escolher o melhor sistema de gestão escolar?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Avalie facilidade de uso, segurança dos dados (conformidade com a LGPD), suporte ao cliente, relatórios em tempo real e a capacidade de crescer junto com a sua instituição."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "O Diário de Classe funciona para escolas de qualquer tamanho?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sim. Existem planos para instituições pequenas, médias e grandes, incluindo um plano Enterprise customizado para acima de 800 alunos."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Preciso de cartão de crédito para o teste grátis?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Não. É possível testar o sistema gratuitamente por 30 dias sem precisar cadastrar um cartão de crédito."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Os dados da minha escola ficam seguros?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sim. Todos os dados são criptografados e armazenados em servidores seguros, em conformidade com a LGPD e as normas educacionais brasileiras."
+                }
+            }
+        ]
+    }
+    </script>
 
     <style>
         * {
@@ -446,6 +494,37 @@
             margin-top: 2rem;
         }
 
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-list {
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+            color: var(--text);
+        }
+
+        .faq-item p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
         /* CTA Section */
         .cta-section {
             background: var(--gradient);
@@ -569,6 +648,7 @@
             <ul class="nav-links">
                 <li><a href="#features">Funcionalidades</a></li>
                 <li><a href="#pricing">Planos</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <!-- <li><a href="#about">Sobre</a></li> -->
             </ul>
             <button class="cta-button">Começar Grátis</button>
@@ -733,6 +813,37 @@
                         <li>APIs customizadas</li>
                     </ul>
                     <button class="cta-button">Fale Conosco</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <p class="section-subtitle">Tire suas dúvidas sobre o sistema de gestão escolar</p>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>O que é um diário de classe online?</h3>
+                    <p>É um sistema digital que substitui o diário de classe em papel, permitindo que professores registrem notas, frequência e observações de forma segura, com acesso remoto de qualquer dispositivo.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Como escolher o melhor sistema de gestão escolar?</h3>
+                    <p>Avalie facilidade de uso, segurança dos dados (conformidade com a LGPD), suporte ao cliente, relatórios em tempo real e a capacidade de crescer junto com a sua instituição.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>O Diário de Classe funciona para escolas de qualquer tamanho?</h3>
+                    <p>Sim. Temos planos para instituições pequenas, médias e grandes, incluindo um plano Enterprise customizado para acima de 800 alunos.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Preciso de cartão de crédito para o teste grátis?</h3>
+                    <p>Não. Você pode testar o sistema gratuitamente por 30 dias sem precisar cadastrar um cartão de crédito.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Os dados da minha escola ficam seguros?</h3>
+                    <p>Sim. Todos os dados são criptografados e armazenados em servidores seguros, em conformidade com a LGPD e as normas educacionais brasileiras.</p>
                 </div>
             </div>
         </div>
